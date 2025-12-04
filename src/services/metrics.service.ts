@@ -4,6 +4,7 @@ const cloudwatchClient = new CloudWatchClient({
     region: process.env.AWS_REGION || 'us-east-1'
 });
 
+
 export class MetricsService {
     private namespace = 'CVCloud/Backend';
     private environment = process.env.NODE_ENV || 'production';
