@@ -5,6 +5,9 @@ const router = Router();
 
 router.get('/all', cvController.getAllCVs);
 
+// Eliminar TODOS los CVs
+router.delete('/all', cvController.deleteAllCVs);
+
 // Obtener todos los CVs de un usuario
 router.get('/user/:userId', cvController.getUserCVs);
 
