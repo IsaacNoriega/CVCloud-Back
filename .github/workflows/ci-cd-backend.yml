@@ -63,6 +63,7 @@ jobs:
             cd /home/ec2-user/Cloud-Project-WS
             
             # Crear el .env dinámicamente con las variables de GitHub Secrets
+
             echo "Generando .env..."
             echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" > .env
             echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
@@ -70,6 +71,9 @@ jobs:
             echo "API_GATEWAY_URL=${{ secrets.API_GATEWAY_URL }}" >> .env
             echo "AWS_S3_BUCKET=${{ secrets.AWS_S3_BUCKET }}" >> .env
             echo "AWS_REGION=${{ secrets.AWS_REGION }}" >> .env
+            echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env
+            echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> .env
+            echo "AWS_SESSION_TOKEN=${{ secrets.AWS_SESSION_TOKEN }}" >> .env
             
             # --- 3. LOGUEAR A ECR Y DESPLEGAR ---
             echo "Iniciando despliegue de Docker Compose..."
