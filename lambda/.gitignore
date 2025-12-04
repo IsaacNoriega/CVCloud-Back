@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Lambda package
+lambda-function.zip
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
