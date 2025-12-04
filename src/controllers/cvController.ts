@@ -2,6 +2,19 @@ import { Request, Response } from "express";
 import prisma from "../prisma/client";
 
 class CVController {
+        // Eliminar TODOS los CVs (uso administrativo)
+        async deleteAllCVs(req: Request, res: Response) {
+            try {
+                const deleted = await prisma.cV.deleteMany({});
+                return res.status(200).json({
+                    message: 'Todos los CVs han sido eliminados',
+                    count: deleted.count
+                });
+            } catch (e) {
+                console.error('Error deleting all CVs:', e);
+                return res.status(500).json({ error: 'Error al eliminar todos los CVs' });
+            }
+        }
     // [DEBUG] Obtener TODOS los CVs (temporal para testing)
     async getAllCVs(req: Request, res: Response) {
             try {
