@@ -4,27 +4,31 @@ import prisma from "../prisma/client";
 class CVController {
     // [DEBUG] Obtener TODOS los CVs (temporal para testing)
     async getAllCVs(req: Request, res: Response) {
-        try {
-            const cvs = await prisma.cV.findMany({
-                include: {
-                    user: {
-                        select: {
-                            id: true,
-                            name: true,
-                            email: true
+            try {
+                const cvs = await prisma.cV.findMany({
+                    take: 100, // Limita a los primeros 100 resultados
+                    select: {
+                        id: true,
+                        userId: true,
+                        data: true,
+                        user: {
+                            select: {
+                                id: true,
+                                name: true,
+                                email: true
+                            }
                         }
                     }
-                }
-            });
+                });
 
-            return res.status(200).json({
-                total: cvs.length,
-                cvs
-            });
-        } catch (e) {
-            console.error('Error fetching all CVs:', e);
-            return res.status(500).json({ error: 'Error al obtener los CVs' });
-        }
+                return res.status(200).json({
+                    total: cvs.length,
+                    cvs
+                });
+            } catch (e) {
+                console.error('Error fetching all CVs:', e);
+                return res.status(500).json({ error: 'Error al obtener los CVs' });
+            }
     }
 
     // Obtener todos los CVs de un usuario
